@@ -1,0 +1,14 @@
+.sidebar {
+    width: 10%;
+    height: 100%;
+    position: fixed;
+    background-color: #212529;
+    color: #fff;
+    padding: 20 px;
+    font-style: italic;
+    font-family: sans-serif;
+    border: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}

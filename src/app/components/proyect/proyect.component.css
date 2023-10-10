@@ -1,0 +1,27 @@
+.card-size{
+    height: 33%;
+    width: 20%;
+    background-color: rgb(69, 69, 69);
+}
+
+.card-text{
+    color: white;
+}
+
+.card-cords0{
+    margin-top: 2%;
+    margin-left: 15%;
+}
+.card-cords1{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.img-size{
+    height: 120px;
+    width: 100%;
+}
+
+.grid{
+    display: flex;
+}
