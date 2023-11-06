@@ -1,5 +1,12 @@
-h4 {
-    color: #fff;
-    font-size: 25px;
+nav {
+    background-color: #d7d2cd;
+    margin-left: 14.9%;
 }
 
+input[type="search"] {
+    background-image: url('../../../assets/search.svg');
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center left 3px;
+    padding-left: 20px;
+}

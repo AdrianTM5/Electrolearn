@@ -7,9 +7,5 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  public estado: boolean;
   
-  constructor(public app: AppComponent){
-    this.estado = true;
-  }
 }

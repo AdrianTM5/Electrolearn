@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
 .sidebar {
-    width: 10%;
+    width: 15%;
     height: 100%;
-    position: fixed;
-    background-color: #212529;
+    background-color: #eee9e3;
     color: #fff;
     padding: 20 px;
     font-style: italic;
@@ -11,4 +12,47 @@
     top: 0;
     left: 0;
     bottom: 0;
+    border: #eae5df solid 3px;
+    margin-top: -57px;
+    overflow: auto;
+    position: fixed;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+}
+
+h1 {
+    color: black;
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+}
+
+strong, p {
+    color: black;
+}
+
+#title {
+    padding: 5px;
+    margin: 5px;
+    display: block;
+    width: 100%;
+}
+
+.op {
+    transition: all 300ms;
+}
+
+.op:hover {
+    border-left: 10px solid #746f6c;
+}
+
+#titulo {
+    margin-top: -10px;
+}
+
+.linea {
+    border: 1px solid #ddd8d2;
+    width: 95%;
 }

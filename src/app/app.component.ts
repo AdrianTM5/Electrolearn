@@ -20,4 +20,11 @@ export class AppComponent {
   ocultar(){
     this.estado = false;
   }
+
+  closeModal() {
+    const modalDiv = document.getElementById('myModal');
+    if(modalDiv != null) {
+      modalDiv.style.display = 'none';
+   }
+  }
 }

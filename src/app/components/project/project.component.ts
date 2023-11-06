@@ -68,4 +68,20 @@ export class ProjectComponent {
       img: '../../../assets/dado.jpg'
     }
   ]
+
+  closeModal() {
+    const modalDiv = document.getElementById('myModal');
+    if(modalDiv != null) {
+      modalDiv.style.display = 'none';
+   }
+  }
+
+  sendDetails(project:any){
+    
+    const modalDiv = document.getElementById('myModal');
+    if(modalDiv != null) {
+      modalDiv.style.display = 'block';
+   }
+  }
+
 }
