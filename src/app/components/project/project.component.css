@@ -11,6 +11,7 @@
     background-color: #488972;
     border: #1b342b 1px solid;
     transition: all 300ms;
+    color: white;
 }
 
 .green:hover {
@@ -18,6 +19,27 @@
     border: white 1px solid;
 }
 
-@media (max-width: 1370) {
+.marco {
+    border: #1b342b 1px solid;
+    transition: all 300ms;
+}
 
+.marco:hover {
+    background-color: rgb(214, 214, 214);
+}
+
+#modalImg {
+    height: 300px;
+    width: 465px;
+    padding-bottom: 10px;
+}
+
+.pag img{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#iframe {
+    width: 1300px;
+    height: 300px;
 }

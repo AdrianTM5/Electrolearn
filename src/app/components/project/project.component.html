@@ -1,4 +1,4 @@
-<div class="container mt-5 margen">
+<div *ngIf="showProjects" class="container mt-5 margen">
   <div class="row">
     <div *ngFor="let project of projects"   class="col-md-4">
       <div class="card m-3 color">
@@ -7,8 +7,31 @@
         <div class="card-body card-text">
           <h5 class="card-title">{{project.title}}</h5>
           <p class="card-text">{{project.description}}</p>
-          <a class="btn btn-primary green">Ver</a>
+          <button class="btn btn-success green" (click)="setProjectIndex(project)"  data-bs-toggle="modal" data-bs-target="#ProjectModal">Más información</button>
         </div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="!showProjects" class="container pag">
+  <iframe src="https://www.circuito.io/app?components=514,11113" frameborder="0" id="iframe"></iframe>
+</div>
+
+<div id="ProjectModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{project.title}}</h4>
+      </div>
+      <div class="modal-body">
+        <img [src]="project.img" id="modalImg">
+        <p>{{project.description}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success green" (click)="showProjects = false" data-bs-dismiss="modal">Ir</button>
+        <button type="button" class="btn btn-default marco" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
   </div>
 </div>

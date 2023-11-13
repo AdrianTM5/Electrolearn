@@ -42,6 +42,7 @@ strong, p {
 
 .op {
     transition: all 300ms;
+    color: black;
 }
 
 .op:hover {
