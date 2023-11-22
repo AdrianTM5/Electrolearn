@@ -13,7 +13,6 @@
     left: 0;
     bottom: 0;
     border: #eae5df solid 3px;
-    margin-top: -57px;
     overflow: auto;
     position: fixed;
 }
@@ -42,7 +41,6 @@ strong, p {
 
 .op {
     transition: all 300ms;
-    color: black;
 }
 
 .op:hover {

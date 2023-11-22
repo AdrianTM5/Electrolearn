@@ -1,4 +1,18 @@
-<div *ngIf="showProjects" class="container mt-5 margen">
+<div *ngIf="showInformation" class="container d-flex contenedor">
+  <h1>{{project.title}}</h1>
+  <div>
+    <iframe src="https://wokwi.com/projects/new/arduino-uno" frameborder="0" id="iframe"></iframe>
+    <div id="materials">
+      <h3>Materiales:</h3>
+      <ul><li *ngFor="let material of project.materials">{{material}}</li></ul>
+      <h3>Pasos:</h3>
+      <ul><li *ngFor="let step of project.steps" id="steps">{{step}}</li></ul>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="showProjects" class="container mt-5 margen d-flex">
   <div class="row">
     <div *ngFor="let project of projects"   class="col-md-4">
       <div class="card m-3 color">
@@ -13,10 +27,6 @@
   </div>
 </div>
 
-<div *ngIf="!showProjects" class="container pag">
-  <iframe src="https://www.circuito.io/app?components=514,11113" frameborder="0" id="iframe"></iframe>
-</div>
-
 <div id="ProjectModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -28,7 +38,7 @@
         <p>{{project.description}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success green" (click)="showProjects = false" data-bs-dismiss="modal">Ir</button>
+        <button type="button" class="btn btn-success green" (click)="setProjectIndex(project); changeView()" data-bs-dismiss="modal">Ir</button>
         <button type="button" class="btn btn-default marco" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
