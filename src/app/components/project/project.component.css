@@ -34,18 +34,28 @@
     padding-bottom: 10px;
 }
 
-#iframe {
+#simulation {
     width: 1300px;
     height: 500px;
     padding-top: 70px;
-    margin-left: 40px;
+    margin-left: 130px;
     padding-bottom: 20px;
     position: relative;
 }
 
 #materials{
-    width: 50%;
+    width: 40%;
     top: 90%;
+    background-color: #D6D1CB;
+    border: black 1px solid;
+    border-radius: 1%;
+    margin-left: 197px;
+    margin-bottom: 20px;
+}
+
+#materials h3 {
+    padding-top: 10px;
+    margin-left: 10px;
 }
 
 .contenedor {
@@ -54,4 +64,24 @@
 
 #steps {
     list-style-type: decimal;
+}
+
+#title {
+    height: 10px;
+}
+
+#title h1 {
+    margin-left: 50px;
+    white-space: nowrap;
+    position: absolute;
+}
+
+#video {
+    height: 500px;
+    width: 650px;
+    margin-left: 10px;
+}
+
+#info {
+    display: flex;
 }

@@ -1,13 +1,22 @@
 <div *ngIf="showInformation" class="container d-flex contenedor">
-  <h1>{{project.title}}</h1>
+  <div id="title">
+    <h1>{{project.title}}</h1>
+  </div>
   <div>
-    <iframe src="https://wokwi.com/projects/new/arduino-uno" frameborder="0" id="iframe"></iframe>
+    <iframe src="https://wokwi.com/projects/new/arduino-uno" frameborder="0" id="simulation"></iframe>
+   <div id="info">
     <div id="materials">
       <h3>Materiales:</h3>
       <ul><li *ngFor="let material of project.materials">{{material}}</li></ul>
       <h3>Pasos:</h3>
       <ul><li *ngFor="let step of project.steps" id="steps">{{step}}</li></ul>
+      <h3>Código:</h3>
+      <ul><li *ngFor="let code of project.codes" id="steps">{{code}}</li></ul>
+      <h3>Ejecución:</h3>
+      <ul><li *ngFor="let eSteps of project.execution" id="steps">{{eSteps}}</li></ul>
     </div>
+    <video id="video" controls="" [src]="project.video"></video>
+   </div>
   </div>
 
 </div>
