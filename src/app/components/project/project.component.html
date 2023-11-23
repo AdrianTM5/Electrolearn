@@ -1,4 +1,4 @@
-<div *ngIf="showInformation" class="container d-flex contenedor">
+<div *ngIf="!app.showProjects" class="container d-flex contenedor">
   <div id="title">
     <h1>{{project.title}}</h1>
   </div>
@@ -17,8 +17,10 @@
       <div id="co" *ngIf="project.co != null">
         <pre *ngFor="let co of project.co">{{co}}</pre>
       </div>
-      <h3>Ejecución:</h3>
-      <ul><li *ngFor="let eSteps of project.execution" id="steps">{{eSteps}}</li></ul>
+      <div *ngIf="project.execution != null">
+        <h3>Ejecución:</h3>
+        <ul><li *ngFor="let eSteps of project.execution" id="steps">{{eSteps}}</li></ul>
+      </div>
     </div>
     <video id="video" controls="" [src]="project.video"></video>
    </div>
@@ -26,7 +28,7 @@
 
 </div>
 
-<div *ngIf="showProjects" class="container mt-5 margen d-flex">
+<div *ngIf="app.showProjects" class="container mt-5 margen d-flex">
   <div class="row">
     <div *ngFor="let project of projects"   class="col-md-4">
       <div class="card m-3 color">
@@ -52,7 +54,7 @@
         <p>{{project.description}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success green" (click)="setProjectIndex(project); changeView()" data-bs-dismiss="modal">Ir</button>
+        <button type="button" class="btn btn-success green" (click)="setProjectIndex(project); app.changeView()" data-bs-dismiss="modal">Ir</button>
         <button type="button" class="btn btn-default marco" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>

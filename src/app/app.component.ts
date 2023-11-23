@@ -7,18 +7,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Electrolearn';
-  public estado: boolean;
+  public showProjects: boolean;
 
   constructor(){
-    this.estado = false;
+    this.showProjects = true;
   }
 
   mostrar(){
-    this.estado = true;
+    this.showProjects = true;
+    console.log(this.showProjects)
   }
 
   ocultar(){
-    this.estado = false;
+    this.showProjects = false;
+  }
+
+  changeView(){
+    this.showProjects = !this.showProjects
   }
 
   closeModal() {

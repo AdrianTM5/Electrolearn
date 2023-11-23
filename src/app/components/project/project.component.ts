@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
-declare var window: any;
+import { Component } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit{
+export class ProjectComponent {
   project: any;
   projects: any;
-  showProjects: boolean = true;
-  showInformation: boolean = false;
-  constructor(){
+  constructor(public app: AppComponent){
     this.projects = [
       {
         title: 'Buzzer',
@@ -32,7 +29,6 @@ export class ProjectComponent implements OnInit{
         materials: ["Arduino Uno o compatible y con el firmware para S4A cargado.", "Una Protoboard más cables.", "3 diodos LED de colores.", "Cuatro resistencias de 330 Ohmios."],
         steps: ["Coloca el Arduino en la Protoboard de manera que ocupe dos líneas.", "Conecta el zumbador pasivo en la Protoboard.", "Asegúrate de que el zumbador tenga dos patitas. Si es así, conéctalo de manera que una patita vaya a un pin digital del Arduino y la otra a un pin de tierra (GND) en la Protoboard."],
         codes: ["Abre el entorno de programación Scratch for Arduino (S4A).", "Asegúrate de que el firmware de S4A esté cargado en tu Arduino.", "Crea un nuevo proyecto en S4A y agrega los bloques necesarios.", "Utiliza bloques de control y eventos para establecer el flujo del semáforo.", "Utiliza bloques de operadores lógicos y comparadores para controlar el cambio de estados del semáforo.", "Asigna los bloques de acción correspondientes para encender y apagar los LED según el estado del semáforo."],
-        co: null,
         execution: ["Conecta tu Arduino a la computadora.", "Carga el programa en S4A en el Arduino.", "Ejecuta el programa y observa cómo el semáforo cambia de estado."],
         video: "../../../assets/videos/semaforo.mp4"
       },
@@ -50,11 +46,11 @@ export class ProjectComponent implements OnInit{
         title: 'Detector de nivel de agua',
         description: 'Proyecto para detectar el nivel de agua.',
         img: '../../../assets/imgs/Detector.jpg',
-        materials: [],
-        steps: [],
+        materials: ["Arduino Uno", "Sensor de nivel liquido KY-033", "Cables de conexión/Jumpers macho-macho", "Protoboard", "Fuente de energia de 9v (cargador o bateria)", "Adaptador en dado caso que se opte por una bateria"],
+        steps: ["Conecta el pin de detección del sensor de nivel de líquido a un pin digital del Arduino.", "Conecta el pin de tierra del sensor al GND del Arduino.", "Conecta el Arduino a una fuente de energía."],
         codes: [],
-        execution: [],
-        video: "../../../assets/videos/"
+        co: ["// Definición de pines", "int sensorPin = 2; // Pin conectado al sensor de nivel de líquido", "void setup() {", "  pinMode(sensorPin, INPUT);//Configura pin del sensor como entrada", "  Serial.begin(9600); // Inicia la comunicación para ver resultados", "}", "void loop() {", "  int sensorValue = digitalRead(sensorPin);//Lee el valor del sensor", "  if (sensorValue == HIGH) {", "    Serial.println('¡Hay agua!'); //Mensaje si se detecta agua", "  } else {", "    Serial.println('No hay agua.'); //Mensaje si no se detecta agua", "  }", "  delay(1000); // Espera un momento para la siguiente lectura", "}"],
+        video: "../../../assets/videos/detector.mp4"
       },
       {
         title: 'Sirena de Policia',
@@ -70,10 +66,10 @@ export class ProjectComponent implements OnInit{
         title: 'Dado electronico',
         description: 'Proyecto que simula la funcionalidad de un dado.',
         img: '../../../assets/imgs/dado.jpg',
-        materials: [],
-        steps: [],
+        materials: ["Arduino Uno", "Display de 7 segmentos", "Resistencias de 220 ohmios", "Botón o pulsador", "Protoboard", "Cables de conexión/Jumpers macho-macho"],
+        steps: ["Conecta cada pin de tu display de 7 segmentos a pines digitales del Arduino, asegurándote de usar resistencias para limitar la corriente.", "Conecta el botón a un pin digital del Arduino y a tierra. Dependiendo de cómo quieras configurarlo, puedes usar una resistencia pull-up o pull-down."],
         codes: [],
-        execution: [],
+        co: ["// Definición de pines", "int buttonPin = 2; // Pin del botón", "int displayPins[]={3,4,5,6,7,8,9};//Pines conectados (a,b,c,d,e,f,g)", "// Variables", "int randomNumber;//Variable para el número aleatorio generado", "bool buttonState = false; // Estado del botón", "void setup() {", "  // Inicialización de pines", "  pinMode(buttonPin, INPUT);", "  for (int i = 0; i < 7; i++) {", "    pinMode(displayPins[i], OUTPUT);", "  }", "}", "void loop() {", "  buttonState = digitalRead(buttonPin); //Lee el estado del botón", "  if (buttonState == HIGH) { //Si se presiona el botón", "    randomNumber=random(1, 7);//Genera un número random del 1 al 6", "    displayNumber(randomNumber);//Muestra el número en el display", "    delay(1000);//Espera antes de permitir otro lanzamiento", "  }", "}", "//Función para mostrar el número en el display", "void displayNumber(int number) {", "//Establece los pines del display según el número a mostrar", "  //Esto puede variar por la configuración de tu display específico", "  //Por ejemplo, para mostrar el número 1, se encienden 'b' y 'c'", "  switch (number) {", "    case 1:", "      digitalWrite(displayPins[0], HIGH);//a", "      digitalWrite(displayPins[1], LOW);//b", "      digitalWrite(displayPins[2], LOW);//c", "      digitalWrite(displayPins[3], HIGH);//d", "      digitalWrite(displayPins[4], HIGH);//e", "      digitalWrite(displayPins[5], HIGH);//f", "      digitalWrite(displayPins[6], HIGH);//g", "      break;", "    //...casos para los números restantes", "    //Aquí debes incluir los patrones de encendido para cada número", "  }", "}"],
         video: "../../../assets/videos/"
       },
       {
@@ -134,15 +130,6 @@ export class ProjectComponent implements OnInit{
         video: "../../../assets/videos/"
       }
     ]
-  }
-
-  ngOnInit(): void {
-    
-  }
-
-  changeView(){
-    this.showProjects = !this.showProjects
-    this.showInformation = !this.showInformation
   }
 
   setProjectIndex(project:any){
