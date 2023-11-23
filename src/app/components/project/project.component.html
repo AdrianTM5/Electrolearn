@@ -10,8 +10,13 @@
       <ul><li *ngFor="let material of project.materials">{{material}}</li></ul>
       <h3>Pasos:</h3>
       <ul><li *ngFor="let step of project.steps" id="steps">{{step}}</li></ul>
-      <h3>Código:</h3>
-      <ul><li *ngFor="let code of project.codes" id="steps">{{code}}</li></ul>
+      <div *ngIf="project.codes != null">
+        <h3>Código:</h3>
+        <ul ><li *ngFor="let code of project.codes" id="steps">{{code}}</li></ul>
+      </div>
+      <div id="co" *ngIf="project.co != null">
+        <pre *ngFor="let co of project.co">{{co}}</pre>
+      </div>
       <h3>Ejecución:</h3>
       <ul><li *ngFor="let eSteps of project.execution" id="steps">{{eSteps}}</li></ul>
     </div>
@@ -38,7 +43,7 @@
 
 <div id="ProjectModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-color">
       <div class="modal-header">
         <h4 class="modal-title">{{project.title}}</h4>
       </div>
