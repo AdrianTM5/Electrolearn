@@ -33,14 +33,14 @@ export class ProjectComponent {
         video: "../../../assets/videos/semaforo.mp4"
       },
       {
-        title: 'Led Chaser Transistor',
-        description: 'Proyecto que enciende y apaga leds secuencialmente.',
-        img: '../../../assets/imgs/led_chaser.png',
-        materials: [],
-        steps: [],
-        codes: [],
-        execution: [],
-        video: "../../../assets/videos/"
+        title: 'Medidor de carga de pilas',
+        description: 'Proyecto que indica la carga de una pila.',
+        img: '../../../assets/imgs/pila.PNG',
+        materials: ["Arduino UNO o cualquier placa de Arduino", "Protoboard donde conectaremos los componentes", "Cables para la conexión entre los componentes y la placa", "3 resistencias de 220 Ω", "1 resistencia de 10 kΩ", "1 LED rojo de 5 mm", "1 LED amarillo de 5 mm", "1 LED verde de 5 mm"],
+        steps: ["Vamos a ver como se han conectado los componentes. Lo primero son los LEDs. Cada uno está conectado en serie con una resistencia de 220 Ω para alargar la vida útil de los mismos. El LED verde está conectado al pin 2, el LED amarillo está conectado al pin 3 y LED rojo está conectado al pin 4. Esto es importante recordarlo para cuando veamos la programación.", "Para medir la batería he colocado una resistencia pull-down. Este tipo de resistencia lo que hace es mantener un estado lógico bajo es decir, a 0V. Es importante utilizar este tipo de resistencias ya que, cuando no tengamos la batería o pila conectada para medir, tenemos un estado indeterminado a la entrada del pin analógico, lo que hace que oscile y puede que hasta que se encienda algún LED. Puedes probar a quitar esta resistencia y verás el resultado.", "El polo positivo de la batería lo conectamos a la resistencia de pull-down y a la entrada analógica A0. El otro extremo de la resistencia a tierra. Por último, el polo negativo de la batería debemos conectarlo a la tierra de Arduino."],
+        codes: ["Leer el pin analógico donde tenemos conectada la pila", "Calculamos el voltaje para el valor que nos ha dado", "Evaluamos el voltaje", "Encendemos los LEDs correspondientes", "Apagamos todos los LEDs"],
+        co: ["// Pines para los LEDs", "#define LEDVERDE 2", "#define LEDAMARILLO 3", "#define LEDROJO 4", "#define ANALOGPILA 0", "// Variables", "int analogValor = 0;", "float voltaje = 0;", "int ledDelay = 800;", "// Umbrales", "float maximo = 1.6;", "float medio = 1.4;", "float minimo = 0.3;", "void setup() {", "  // Iniciamos el monitor serie", "  Serial.begin(9600);", "  // Los pines de LED en modo salida", "  pinMode(LEDVERDE, OUTPUT);", "  pinMode(LEDAMARILLO, OUTPUT);", "  pinMode(LEDROJO, OUTPUT);", "}", "void loop() {", "  // Leemos valor de la entrada analógica", "  analogValor = analogRead(ANALOGPILA);", "  // Obtenemos el voltaje", "  voltaje = 0.0048 * analogValor;", "  Serial.print('Voltaje: ');", "  Serial.println(voltaje);", "  // Dependiendo del voltaje mostramos un LED u otro", "  if (voltaje >= maximo)", "  {", "    digitalWrite(LEDVERDE, HIGH);", "    delay(ledDelay);", "    digitalWrite(LEDVERDE, LOW);", "  }", "  else if (voltaje < maximo && voltaje > medio)", "  {", "    digitalWrite(LEDAMARILLO, HIGH);", "    delay(ledDelay);", "    digitalWrite(LEDAMARILLO, LOW);", "  }", "  else if (voltaje < medio && voltaje > minimo)", "  {", "    digitalWrite(LEDROJO, HIGH);", " delay(ledDelay);", " digitalWrite(LEDROJO, LOW);", "  }", "  // Apagamos todos los LEDs", "  digitalWrite(LEDVERDE, LOW);", "  digitalWrite(LEDAMARILLO, LOW);", "  digitalWrite(LEDROJO, LOW);", "}"],
+        video: "../../../assets/videos/pila.mp4"
       },
       {
         title: 'Detector de nivel de agua',
@@ -100,34 +100,32 @@ export class ProjectComponent {
         video: "../../../assets/videos/auto.mp4"
       },
       {
-        title: '-',
-        description: '-',
-        img: '../../../assets/imgs/Detector.jpg',
-        materials: [],
-        steps: [],
-        codes: [],
-        execution: [],
-        video: "../../../assets/videos/"
+        title: 'Sensor ultrasonidos',
+        description: 'Proyecto que detecta ultra sonidos emitidos por otro dispositivo',
+        img: '../../../assets/imgs/sensor.PNG',
+        materials: ["Arduino UNO", "Protoboard donde conectaremos los componentes", "Cables para hacer las conexiones", "3 resistencias de 220 Ω", "1 LED verde", "1 LED amarillo", "1 LED rojo", "1 sensor ultrasónico Arduino (HC-SR04)", "1 buzzer"],
+        codes: ["Vamos a empezar por la programación. Lo primero es una breve descripción de lo que queremos conseguir. Esto nos ayudará a plantear el problema general y posteriormente dividirlo en trozos más pequeños. A esto se le llama pensamiento computacional y si eres usuario asiduo de este blog, ya estarás familiarizado con este concepto.", "El sistema de aparcamiento consiste en detectar un objeto a través del sensor ultrasónico y avisar con señales de luz y sonido. Por lo tanto, ya tenemos la primera división, detectar el obstáculo y alertas con sonido y luces."],
+        co: ["// Pines utilizados", "#define LEDVERDE 2", "#define LEDAMARILLO 3", "#define LEDROJO 4", "#define TRIGGER 5", "#define ECHO 6", "#define BUZZER 9", "// Constantes", "const float sonido = 34300.0; // Velocidad del sonido en cm/s", "const float umbral1 = 30.0;", "const float umbral2 = 20.0;", "const float umbral3 = 10.0;", "void setup() {", "  // Iniciamos el monitor serie", "  Serial.begin(9600);", "  // Modo entrada/salida de los pines", "  pinMode(LEDVERDE, OUTPUT);", "  pinMode(LEDAMARILLO, OUTPUT);", "  pinMode(LEDROJO, OUTPUT);", "  pinMode(ECHO, INPUT);", "  pinMode(TRIGGER, OUTPUT);", "  pinMode(BUZZER, OUTPUT);", " // Apagamos todos los LEDs", "  apagarLEDs();", "}", "// Apaga todos los LEDs", "void apagarLEDs()", "{", "  // Apagamos todos los LEDs", "  digitalWrite(LEDVERDE, LOW);", "  digitalWrite(LEDAMARILLO, LOW);", "  digitalWrite(LEDROJO, LOW);", "}", "void loop() {", "  // Preparamos el sensor de ultrasonidos", "  iniciarTrigger();", "  // Obtenemos la distancia", "  float distancia = calcularDistancia();", "  // Apagamos todos los LEDs", " apagarLEDs();", "  // Lanzamos alerta si estamos dentro del rango de peligro", "  if (distancia < umbral1)", " {", "    // Lanzamos alertas", "    alertas(distancia);", " }", "}", "// Método que inicia la secuencia del Trigger para comenzar a medir", "void iniciarTrigger()", "{", "  // Ponemos el Triiger en estado bajo y esperamos 2 ms", "  digitalWrite(TRIGGER, LOW);", "  delayMicroseconds(2);", "  // Ponemos el pin Trigger a estado alto y esperamos 10 ms", "  digitalWrite(TRIGGER, HIGH);", "  delayMicroseconds(10);", "  // Comenzamos poniendo el pin Trigger en estado bajo", " digitalWrite(TRIGGER, LOW);", "}", "// Método que calcula la distancia a la que se encuentra un objeto.", "// Devuelve una variable tipo float que contiene la distancia", "float calcularDistancia()", "{", " unsigned long tiempo = pulseIn(ECHO, HIGH);", "float distancia = tiempo * 0.000001 * sonido / 2.0;", "Serial.print(distancia);", "Serial.print('cm');", "Serial.println();", "delay(500);", "return distancia;", "}", "void alertas(float distancia)", "{", "  if (distancia < umbral1 && distancia >= umbral2)", "{", "    // Encendemos el LED verde", "    digitalWrite(LEDVERDE, HIGH);", "   tone(BUZZER, 2000, 200);", " }", "else if (distancia < umbral2 && distancia > umbral3)", " {", "    digitalWrite(LEDAMARILLO, HIGH);", "     tone(BUZZER, 2500, 200);", "  }", "  else if (distancia <= umbral3)", "  {", "    digitalWrite(LEDROJO, HIGH);", "    tone(BUZZER, 3000, 200);", "  }", "}"],
+        video: "../../../assets/videos/sensor.mp4"
       },
       {
-        title: '-',
-        description: '-',
-        img: '../../../assets/imgs/police.PNG',
-        materials: [],
-        steps: [],
-        codes: [],
-        execution: [],
-        video: "../../../assets/videos/"
+        title: 'Himno de España',
+        description: 'Proyecto que toca mediante un buzzer el himno de España',
+        img: '../../../assets/imgs/españa.PNG',
+        materials: ["Placa de arduino UNO", "Protoboard", "Cables macho-hembra", "Buzzer pasivo"],
+        steps: ["Una de las partes más importantes a la hora de realizar nuestro montaje del zumbador pasa por conectar correctamente los diferentes elementos.", "En este caso, el montaje es muy simple pero para que el código funcione correctamente, es necesario que los pines vayan conectados en la misma posición que se muestra en el esquema mostrado a continuación.", ""],
+        codes: ["A continuación  se muestra el código de programación desarrollado específicamente para este proyecto. Los pines que puedes encontrar en el código son los mismos que encontrarás en el esquema de conexiones previamente mostrado."],
+        co: ["#define DO 523.25", "#define RE 587.33", "#define MI 659.26", "#define FA 698.46", "#define SOL 783.99", "#define LA 880", "#define SI 987.77", "#define RE2 1174.66", "#define RE2 1174.66", "#define DO2 1062", "#define DoS 554.37", "#define RES 622.25", "#define FAS 739.99", "#define SOLS 830.61", "#define FAS2 1479.98", "#define a 1000", "#define b 500", "void setup() {", "pinMode(8,OUTPUT);", "}", "void loop() { ", "  tone(8, SOL , a);", " delay(500);", " noTone(8);", "  tone(8, RE , a);", "  delay(500);", " noTone(8);", " tone(8, SI , a);", " delay(500);", " noTone(8);", " tone(8, SOL, b);", " delay(500);", " noTone(8);", " tone(8, RE2 , b);", " delay(400);", "noTone(8);", "tone(8, DO2 , b);", " delay(400);", "noTone(8);", "tone(8, SI , b);", " delay(400);", "noTone(8);", "tone(8, LA , b);", " delay(400);", "noTone(8);", "tone(8, SOL , b);", " delay(400);", "noTone(8);", "tone(8, SOL , b);", " delay(400);", "noTone(8);", "tone(8, FAS , b);", " delay(400);", " delay(1000);", "}"],
+        video: "../../../assets/videos/españa.mp4"
       },
       {
-        title: '-',
-        description: '-',
-        img: '../../../assets/imgs/dado.jpg',
-        materials: [],
-        steps: [],
-        codes: [],
-        execution: [],
-        video: "../../../assets/videos/"
+        title: 'Matriz LED controlada con joystick',
+        description: 'Proyecto con el cual se puede controlar mediante un Joystick una matriz LED',
+        img: '../../../assets/imgs/joystick.PNG',
+        materials: ["Placa de Arduino UNO", "Joystick", "Protoboard", "Cables macho-hembra", "Matriz LED"],
+        codes: ["A continuación se muestra el código de programación desarrollado específicamente para este proyecto. Los pines que puedes encontrar en el código son los mismos que encontrarás en el esquema de conexiones previamente mostrado."],
+        co: ["#include 'LedControl.h'", "LedControl lc=LedControl(12,10,11,1);", "const int SW_pin = 2;", "const int xpin = 0;", "const int ypin = 1;", "int filas=4, col=4;", "void setup() {", "  pinMode(SW_pin, INPUT);", "  digitalWrite(SW_pin, HIGH);", "  Serial.begin(9600);", "  lc.shutdown(0,false);", "  lc.setIntensity(0,8);", "  lc.clearDisplay(0);", "}", "void loop() {", "  if(digitalRead(SW_pin) == 0){", "    Serial.print('click');", "    Serial.print('\n');", "    lc.clearDisplay(0);", "    filas=4;", "    col=4;", "    lc.setLed(0,col,filas,true);", "}", "  else if(analogRead(xpin)>525 && filas<7){", "    Serial.print('derecha');", "    Serial.print('\n');", "    filas++;", "    lc.setLed(0,col,filas,true);", "}", " else if(analogRead(xpin)<510 && filas > 0){", "   Serial.print('izquierda');", "    Serial.print('\n');", "    filas--;", "    lc.setLed(0,col,filas,true);", "}", "  else if(analogRead(ypin)>520 && col < 7){", "    Serial.print('abajo');", "    Serial.print('\n');", "    col++;", "    lc.setLed(0,col,filas,true);", "  }", "  else if(analogRead(ypin)<500 && col > 0){", "    Serial.print('arriba');", "    Serial.print('\n');", " col--;", " lc.setLed(0,col,filas,true);", " }", "  Serial.print('\n\n');", "  delay(100);", "}"],
+        video: "../../../assets/videos/españa.mp4"
       }
     ]
   }

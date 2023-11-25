@@ -8,8 +8,10 @@
     <div id="materials">
       <h3>Materiales:</h3>
       <ul><li *ngFor="let material of project.materials">{{material}}</li></ul>
-      <h3>Pasos:</h3>
+      <div *ngIf="project.steps != null">
+        <h3>Pasos:</h3>
       <ul><li *ngFor="let step of project.steps" id="steps">{{step}}</li></ul>
+      </div>
       <div *ngIf="project.codes != null">
         <h3>Código:</h3>
         <ul ><li *ngFor="let code of project.codes" id="steps">{{code}}</li></ul>
